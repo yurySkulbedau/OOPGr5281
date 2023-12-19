@@ -16,4 +16,5 @@ class Bottle(Product):
         self.bottleVolume = bottleVolume
 
     def __str__(self):
-        return super().__str__() + "\nvolume=" + str(self.bottleVolume)
+        return super().__str__() + "volume=" + str(self.bottleVolume)
+    

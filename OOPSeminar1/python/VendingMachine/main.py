@@ -14,10 +14,10 @@ from assortiment import assort
 if __name__ == "__main__":   
 
     hold1 = Holder(4, 4)
-    coinDesp = CoinDispenser(0)
+    coinDisp = CoinDispenser(0)
     disp = Display()
 
-    venMachine = VendingMachine(hold1, coinDesp, assort, disp)
+    venMachine = VendingMachine(hold1, coinDisp, assort, disp)
 
     for prod in venMachine.getProducts():
         print(prod)
@@ -25,6 +25,6 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     # myFrame = MainFrame()
-    myFrame = MyWindow(venMachine.getProducts())
+    myFrame = MyWindow(coinDisp, venMachine)
     myFrame.show()
     sys.exit(app.exec())

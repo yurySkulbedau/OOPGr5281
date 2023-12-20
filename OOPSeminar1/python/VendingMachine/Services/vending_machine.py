@@ -15,20 +15,20 @@ class VendingMachine:
     def getProducts(self):
         return self.assort
 
-    def buyProduct(self, p: Product, price):
-        if p in self.assort and self.dispenser.getSumm() >= price:
+    def buyProduct(self, p: Product):
+        if p in self.assort and self.dispenser.get_sum() >= p.price:
             # if self.dispenser.dispense(price):
-            self.releaseProduct(p, self.holder)
-            self.display.print("You have successfully bought " + p.getName() + ".")
+            # self.releaseProduct(p, self.holder)
+            self.display.print(f"You have successfully bought {p.name}.")
         else:
             self.display.print("Product not available or insufficient balance.")
 
-    def releaseProduct(self, p: Product, h: Holder):
-        h.release(0, 0)
-        self.assort.remove(p)
+    # def releaseProduct(self, p: Product, h: Holder):
+    #     h.release(0, 0)
+    #     self.assort.remove(p)
 
-    def cancel(self):
-        self.dispenser.giveChahge(0, 0)
+    # def cancel(self):
+    #     self.dispenser.giveChahge(0, 0)
 
     def getHolder(self):
         return self.holder

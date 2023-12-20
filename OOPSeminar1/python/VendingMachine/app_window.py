@@ -1,9 +1,15 @@
 from PyQt6.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, QLineEdit, QHBoxLayout
 from PyQt6.QtGui import QFont
 
+from Domain.product import Product
+
 class MyWindow(QWidget):
-    def __init__(self, assort):
+    def __init__(self, coin_dispenser, vending_machine):
         super().__init__()
+
+        self.coin_dispenser = coin_dispenser
+        self.vending_machine = vending_machine
+        assort = vending_machine.getProducts()
 
         self.setWindowTitle("VendingMachine")
         self.mainFont = QFont("Segoe print", 18)
@@ -20,7 +26,7 @@ class MyWindow(QWidget):
 
         for product in assort:
             button = QPushButton(f"{product.name}, {product.price}")
-            button.clicked.connect(self.on_button_clicked)  # Подключите слот (метод), который будет вызываться при нажатии кнопки
+            button.clicked.connect(lambda checked, p=product: self.on_button_clicked(p))
             button.setFont(self.mainFont)
             layout.addWidget(button)
 
@@ -29,6 +35,11 @@ class MyWindow(QWidget):
 
         self.setStyleSheet("background-color: rgb(128, 184, 255);")
 
-    def on_button_clicked(self):
-        sender = self.sender()
-        print(f"Button {sender.text()} clicked!")
+    def on_button_clicked(self, p: Product):
+        sender = self.sender()  # self.sender() возвращает объект, который отправил текущий сигнал. В контексте кода, self.sender() вернет объект кнопки, которая была нажата.
+        money = self.tfMoney.text()
+        self.coin_dispenser.nominal = int(money) if money else 0
+
+        print(f"Button {sender.text()} clicked! Deposited money: {self.coin_dispenser.get_sum()}")
+
+        self.vending_machine.buyProduct(p)

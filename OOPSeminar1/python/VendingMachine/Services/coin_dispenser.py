@@ -3,8 +3,11 @@ class CoinDispenser:
         self.nominal = nominal
 
 
+    # def __str__(self):
+    #     return "Номинал монеты равен " + str(self.nominal)
+        
     def __str__(self):
-        return "Номинал монеты равен " + str(self.nominal)
+        return f"You put {self.nominal} rubles"
 
     def getSumm(self, insertCoin, outCoin):
         summCoin = insertCoin + outCoin
@@ -12,12 +15,8 @@ class CoinDispenser:
 
     def giveChahge(self, summCoin, price):
         if price < summCoin:
-            change = summCoin - price
-        elif price == summCoin:
-            change = summCoin - price
-        else:
-            change = 0
-        return change
+            return summCoin - price
+        return 0
 
-    def dispense(self, price):
-        return False
+    # def dispense(self, price):
+    #     return False

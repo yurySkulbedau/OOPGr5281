@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
 
     app = QApplication(sys.argv)
-    # myFrame = MainFrame(venMachine.getProducts())
+    # myFrame = MainFrame()
     myFrame = MyWindow(venMachine.getProducts())
     myFrame.show()
     sys.exit(app.exec())

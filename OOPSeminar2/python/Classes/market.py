@@ -7,7 +7,7 @@ from Interfaces.i_queue_behaviour import iQueueBehaviour
 
 class Market(iMarketBehaviour, iQueueBehaviour):
     def __init__(self):
-         self.queue : List[iActorBehaviour] = []
+         self.queue: List[iActorBehaviour] = []
 
 
     def acceptToMarket(self, actor: iActorBehaviour):
